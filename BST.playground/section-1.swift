@@ -5,7 +5,7 @@
 *  Adam Cumiskey 2014
 */
 
-class BinaryTree {
+class BinarySearchTree {
     var root: Node?;
     
     // Initializer for the BST
@@ -164,7 +164,7 @@ class BinaryTree {
 }
 
 // 1. build123()
-var build123 = BinaryTree()
+var build123 = BinarySearchTree()
 build123.insert(2)
 build123.insert(1)
 build123.insert(3)
