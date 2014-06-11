@@ -98,6 +98,69 @@ class BinaryTree {
             return size(node?.left) + 1 + size(node?.right)
         }
     }
+    
+    /**
+     *  Helper method to calculate the max depth of the tree
+    **/
+    func maxDepth() -> Int {
+        return maxDepth(self.root)
+    }
+    
+    /**
+     *  Recursively calculate the max depth from a given node
+    **/
+    func maxDepth(node: Node?) -> Int {
+        if node == nil {
+            return 0;
+        } else {
+            var maxLeft: Int = maxDepth(node?.left?)
+            var maxRight: Int = maxDepth(node?.right?)
+            
+            if (maxLeft > maxRight) {
+                return maxLeft+1
+            } else {
+                return maxRight+1
+            }
+        }
+    }
+    
+    /**
+     *  Helper function to calculate the minimum value
+    **/
+    func minValue() -> Int? {
+        return minValue(self.root?)
+    }
+    
+    /**
+     *  Get the minimum value by traversing all the left nodes in the tree until
+     *  a leaf is reached
+    **/
+    func minValue(node: Node?) -> Int? {
+        var currentNode = node
+        while currentNode?.left? != nil {
+            currentNode = currentNode?.left!
+        }
+        return currentNode?.data
+    }
+    
+    /**
+     *  Helper function to calculate the maximum value
+    **/
+    func maxValue() -> Int? {
+        return maxValue(self.root?)
+    }
+    
+    /**
+     *  Get the maximum value by traversing all the right nodes in the tree until
+     *  a leaf is reached
+    **/
+    func maxValue(node: Node?) -> Int? {
+        var currentNode = node
+        while currentNode?.right? != nil {
+            currentNode = currentNode?.right!
+        }
+        return currentNode?.data
+    }
 }
 
 // 1. build123()
@@ -106,9 +169,33 @@ build123.insert(2)
 build123.insert(1)
 build123.insert(3)
 
-println(build123.root?.data)
-println(build123.root?.left?.data)
-println(build123.root?.right?.data)
+println("-- #1 --")
+println("build123()")
+println("Root data: \(build123.root?.data)")
+println("Left data: \(build123.root?.left?.data)")
+println("Right data: \(build123.root?.right?.data) \n")
 
 // 2. size()
-println("The build123 tree has \(build123.size()) nodes")
+println("-- #2 --")
+println("size()")
+println("The build123 tree has \(build123.size()) nodes \n")
+
+// 3. maxDepth()
+build123.insert(12)
+build123.insert(19)
+build123.insert(21)
+build123.insert(3)
+
+println("-- #3 --")
+println("maxDepth()")
+println("MaxDepth of build123 tree is \(build123.maxDepth()) \n")
+
+// 4. minValue()
+println("-- #4 --")
+println("minValue()")
+println("The build123 tree has a minValue of \(build123.minValue())")
+
+// 5. maxValue()
+println("-- #5 --")
+println("maxValue()")
+println("The build123 tree has a maxValue of \(build123.maxValue())")
